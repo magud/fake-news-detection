@@ -37,13 +37,10 @@ In total, five models are examined and their implementation of [HuggingFace](htt
 | Model | Publication Date | Published By | Idea in a nutshell
 | :---- | :--------------- | :----------- | :-------------- |
 | [BERT](https://arxiv.org/pdf/1810.04805.pdf)  | October 2018 | Google AI Language | Bidirectional Encoders from Transformer |
-| [RoBERTa](https://arxiv.org/pdf/1907.11692.pdf)   | July 2019 | Facebook AI &  
-University of Washington | Train BERT longer |
+| [RoBERTa](https://arxiv.org/pdf/1907.11692.pdf)   | July 2019 | Facebook AI &<br>University of Washington | Train BERT longer |
 | [DistilBERT](https://arxiv.org/pdf/1910.01108.pdf) | August 2019 | HuggingFace | Distill BERT |
-| [ALBERT](https://arxiv.org/pdf/1909.11942.pdf) | September 2019 | Google Research &  
-Toyota Technological Institute at Chicago | Distill BERT |
-| [XLNet](https://arxiv.org/pdf/1906.08237.pdf) | June 2019 | Carnegie Mellon University &  
-Google Brain | Permutation Language Model |
+| [ALBERT](https://arxiv.org/pdf/1909.11942.pdf) | September 2019 | Google Research &<br>Toyota Technological Institute at Chicago | Distill BERT |
+| [XLNet](https://arxiv.org/pdf/1906.08237.pdf) | June 2019 | Carnegie Mellon University &<br>Google Brain | Permutation Language Model |
 
 
 * the three model_exploration scripts are mainly the same except for the used freezing technique
