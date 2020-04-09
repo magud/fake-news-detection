@@ -25,7 +25,7 @@ or be completely *Unrelated* (UNR).
 | FNC-1 ARC | [Review of the Challenge](https://github.com/UKPLab/coling2018_fake-news-challenge/tree/master/data/fnc-1/corpora/FNC_ARC) | + User posts | 64,205 | 7.7% | 3.5% | 15.3% | 73.5% |
 
 ## Data Pre-Processing
-| Data Pre-Processing | Details |
+| Step | Details |
 | ------------------- | :------ |
 | Concatenation | Headline + Article body | 
 | Stop word removal   | The, the, A, a, An, an |
@@ -34,15 +34,29 @@ or be completely *Unrelated* (UNR).
 ## Models
 In total, five models are examined and their implementation of [HuggingFace](https://huggingface.co/transformers/) is used.  
 
-| Model | Publication Date | Published By | Idea in a nutshell
+| Model | Publication Date | Published By | Idea in a Nutshell
 | :---- | :--------------- | :----------- | :-------------- |
 | [BERT](https://arxiv.org/pdf/1810.04805.pdf)  | Oct 2018 | Google AI Language | Bidirectional Encoders from Transformer |
-| [RoBERTa](https://arxiv.org/pdf/1907.11692.pdf)   | Jul 2019 | Facebook AI &<br>University of Washington | Train BERT longer |
+| [RoBERTa](https://arxiv.org/pdf/1907.11692.pdf)   | Jul 2019 | Facebook AI &<br>University of Washington | Train BERT excessively |
 | [DistilBERT](https://arxiv.org/pdf/1910.01108.pdf) | Aug 2019 | HuggingFace | Distill BERT |
 | [ALBERT](https://arxiv.org/pdf/1909.11942.pdf) | Sep 2019 | Google Research &<br>Toyota Technological Institute at Chicago | Distill BERT |
 | [XLNet](https://arxiv.org/pdf/1906.08237.pdf) | Jun 2019 | Carnegie Mellon University &<br>Google Brain | Permutation Language Model |
 
+## Evaluating Unsupervised Representation Learning
+The evaluation is conducted in two steps.  
 
+In the first experimental setup, all models are trained for 2 epochs,  
+with a learning rate of 3e-5, a sequence length of 512 tokens, a batch size of 8 and a linear learning rate schedule.  
+With this fixed setting of hyperparameters three runs were conducted per model and dataset. The first run freezes all  
+layers except for the last two (pooling & classification layer). The second run finetunes all layers. The third run  
+freezes all embeddings layers. 
+
+The second step consists of an extensive grid search over the hyperparameters learning rate, batch size, sequence length  
+and learning rate schedule and covers the following grid: 
+
+
+
+## Additional Remarks
 * the three model_exploration scripts are mainly the same except for the used freezing technique
 
 * model_grid_search requires a manual definition of the current learning rate in the search_space dictionary
