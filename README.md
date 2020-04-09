@@ -1,9 +1,9 @@
-| Hyperparameter  |        |        |  
-| :-------------- | :----- | :----- |  
-| Sequence length | 256    | 512 |  
-| Batch size      | 16,32  | 4,8 |  
-| Learning rate  <td colspan=2>1e-5, 2e-5, 3e-5, 4e-5 |  
-| Learning rate schedule  <td colspan=2>constant, linear, cosine |   
+| Hyperparameter  |        |          
+| :-------------- | :----- | :-----   
+| Sequence length | 256    | 512   
+| Batch size      | 16,32  | 4,8  
+| Learning rate  <td colspan=2>1e-5, 2e-5, 3e-5, 4e-5   
+| Learning rate schedule  <td colspan=2>constant, linear, cosine    
 
 
 # Fake News Detection
