@@ -26,7 +26,7 @@ or be completely *Unrelated* (UNR).
 
 ## Data Pre-Processing
 | Step | Details |
-| ------------------- | :------ |
+| :--- | :------ |
 | Concatenation | Headline + Article body | 
 | Stop word removal   | The, the, A, a, An, an |
 | Train-dev split | 80:20 |
@@ -53,6 +53,10 @@ freezes all embeddings layers.
 
 The second step consists of an extensive grid search over the hyperparameters learning rate, batch size, sequence length  
 and learning rate schedule and covers the following grid: 
+
+| Hyperparameter | |
+| :------------- | :----- |
+
 
 
 
