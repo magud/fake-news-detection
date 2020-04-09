@@ -54,7 +54,7 @@ freezes all embeddings layers.
 The second step consists of an extensive grid search over the hyperparameters learning rate, batch size, sequence length  
 and learning rate schedule and covers the following grid: 
 
-<table>
+    <table>
   <tr>
     <td colspan="5"> **Hyperparameter** </td>
   </tr>
