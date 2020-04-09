@@ -7,6 +7,12 @@ Master's thesis about Fake News Challenge Stage 1 with BERT, RoBERTa, DistilBERT
 	removes stop words (The, the, A, a, An, an) and   
 	splits the training data into training and evaluation set (80:20 split)  
 
+| Data Pre-Processing | Details |
+| ------------------- | ------: |
+| concatenation headline + article body | |
+| stop word removal   | The, the, A, a, An, an |
+| train dev split | 80:20 |
+
 * the three model_exploration scripts are mainly the same except for the used freezing technique
 
 * model_grid_search requires a manual definition of the current learning rate in the search_space dictionary
