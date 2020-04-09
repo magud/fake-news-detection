@@ -8,10 +8,10 @@ Master's thesis about Fake News Challenge Stage 1 with BERT, RoBERTa, DistilBERT
 	splits the training data into training and evaluation set (80:20 split)  
 
 | Data Pre-Processing | Details |
-| ------------------- | ------: |
-| concatenation headline + article body | |
-| stop word removal   | The, the, A, a, An, an |
-| train dev split | 80:20 |
+| ------------------- | :------ |
+| Concatenation | Headline + Article body | 
+| Stop word removal   | The, the, A, a, An, an |
+| Train-dev split | 80:20 |
 
 * the three model_exploration scripts are mainly the same except for the used freezing technique
 
