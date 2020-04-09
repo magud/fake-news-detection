@@ -1,11 +1,14 @@
 # Fake News Detection
-Master's thesis about Fake News Challenge Stage 1 with BERT, RoBERTa, DistilBERT, ALBERT and XLNet
+Master's thesis about Fake News Challenge Stage 1 with BERT, RoBERTa, DistilBERT, ALBERT and XLNet  
 
+In this master's thesis, the two datasets FNC-1 and FNC-ARC were used to fine-tune large pretrained NLP models to classify the stances of article bodies towards their respective headline. The goal is to systematically analyze how well the models perform in general, how much hyperparameter tuning is necessary and which of the models performs best.  
+The background of the thesis is the Fake News Challenge which was held in 2017. More details can be found [here](http://www.fakenewschallenge.org/).
 
-* important data pre-processing steps:   
-	concatenates headline and article body,   
-	removes stop words (The, the, A, a, An, an) and   
-	splits the training data into training and evaluation set (80:20 split)  
+| Dataset | Data Source |
+| ------------------- | :------ |
+| FNC-1 | |
+| FNC-1 ARC | |
+
 
 | Data Pre-Processing | Details |
 | ------------------- | :------ |
