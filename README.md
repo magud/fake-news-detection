@@ -56,7 +56,7 @@ and learning rate schedule and covers the following grid:
 
 <table>
   <tr>
-    <td colspan="5">**Hyperparameter**</td>
+    <td colspan="5"> **Hyperparameter** </td>
   </tr>
   <tr>
     <td>Sequence length</td>
