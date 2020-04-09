@@ -1,16 +1,22 @@
 # Fake News Detection
-Master's thesis about Fake News Challenge Stage 1 with BERT, RoBERTa, DistilBERT, ALBERT and XLNet  
+Master's thesis about evaluating BERT, RoBERTa, DistilBERT, ALBERT and XLNet for detecting stances of Fake News.
 
 ## Goal and Background
-In this master's thesis, the two datasets FNC-1 and FNC-ARC were used to fine-tune large pretrained NLP models to classify the stances of article bodies towards their respective headline. The goal is to systematically analyze how well the models perform in general, how much hyperparameter tuning is necessary and which of the models performs best.  
-The background of the thesis is the Fake News Challenge which was held in 2017. More details can be found [here](http://www.fakenewschallenge.org/).
+In this master's thesis, the two datasets FNC-1 and FNC-ARC were used to finetune large pretrained NLP models to classify the stances of article bodies towards their respective headline.  
+The goals are to systematically analyze  
+1. how well the models perform in general  
+2. how much hyperparameter tuning is necessary and 
+3. which of the models performs best.  
+The background of the thesis is the Fake News Challenge which was held in 2017. More details can be found [here](http://www.fakenewschallenge.org/). 
 
 ## Datasets
+In total, two datasets are used to finetune the five models. The first dataset comes from the Fake News Challenge itself, 
+while the second dataset is an extesion that was created by [Hanselowski et al](https://arxiv.org/pdf/1806.05180.pdf).
 
-| Dataset | Data Source |
-| ------------------- | :------ |
-| FNC-1 | [Fake News Challenge Stage 1](https://github.com/FakeNewsChallenge/fnc-1/tree/29d473af2d15278f0464d5e41e4cbe7eb58231f2)|
-| FNC-1 ARC | [Review of the Challenge](https://github.com/UKPLab/coling2018_fake-news-challenge/tree/master/data/fnc-1/corpora/FNC_ARC) |
+| Dataset | Data Source | Data Type | Instances | AGR | DSG | DSC | UNR | 
+| ------------------- | :------ | :------ | :------ | :------ | :------ | :------ | :------ |
+| FNC-1 | [Fake News Challenge Stage 1](https://github.com/FakeNewsChallenge/fnc-1/tree/29d473af2d15278f0464d5e41e4cbe7eb58231f2)| News articles | 49,972 | 7.4% | 1.7% | 17.8% | 73.1% |
+| FNC-1 ARC | [Review of the Challenge](https://github.com/UKPLab/coling2018_fake-news-challenge/tree/master/data/fnc-1/corpora/FNC_ARC) | + User posts | 7.7% | 3.5% | 15.3% | 73.5% |
 
 ## Data Pre-Processing
 | Data Pre-Processing | Details |
