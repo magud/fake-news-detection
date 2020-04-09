@@ -61,6 +61,14 @@ and learning rate schedule and covers the following grid:
 | Learning rate | 1e-5, 2e-5, 3e-5, 4e-5 |
 | Learning rate schedule | constant, linear, cosine |
 
+| One    | Two | Three | Four    | Five  | Six
+|-|-|-|-|-|-
+| Span <td colspan=3>triple  <td colspan=2>double
+ 
+ One    | Two | Three | Four    | Five  | Six
+-|||||-
+Span <td colspan=3>triple  <td colspan=2>double
+
 
 
 ## Additional Remarks
