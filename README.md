@@ -58,8 +58,8 @@ and learning rate schedule and covers the following grid:
 | :-------------- | :----- | :----- |  
 | Sequence length | 256    | 512 |  
 | Batch size      | 16,32  | 4,8 |  
-| Learning rate <td colspan=2>1e-5, 2e-5, 3e-5, 4e-5 |  
-| Learning rate schedule <td colspan=2>constant, linear, cosine |    
+| Learning rate | <td colspan=2>1e-5, 2e-5, 3e-5, 4e-5 |  
+| Learning rate schedule | <td colspan=2>constant, linear, cosine |    
 
 ## Additional Remarks
 * the three model_exploration scripts are mainly the same except for the used freezing technique
