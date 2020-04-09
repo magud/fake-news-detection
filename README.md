@@ -4,6 +4,16 @@
 | Batch size      | 16,32  | 4,8  |
 | Learning rate   <td colspan=2>1e-5, 2e-5, 3e-5, 4e-5  | 
 | Learning rate schedule  <td colspan=2> constant, linear, cosine  |
+ 
+ <table>
+  <tr>
+    <td>One</td>
+    <td>Two</td>
+  </tr>
+  <tr>
+    <td colspan="2">Three</td>
+  </tr>
+</table>
 
 # Fake News Detection
 Master's thesis about evaluating BERT, RoBERTa, DistilBERT, ALBERT and XLNet for detecting stances of Fake News.
