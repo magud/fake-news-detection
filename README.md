@@ -5,10 +5,50 @@
 | Learning rate   <td colspan=2>1e-5, 2e-5, 3e-5, 4e-5  | 
 | Learning rate schedule  <td colspan=2> constant, linear, cosine  |
  
- <table>
+ 
+   <table>
+  <tr>
+    <td>Hyperparameter</td>
+  <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td>Sequence length</td>
+ <td  colspan="2">256</td>
+<td  colspan="2">512</td>
+  </tr>
+  <tr>
+    <td>Batch size</td>
+<td  colspan="2">16,32</td>
+<td  colspan="2">4,8</td>
+  </tr>
+  <tr>
+    <td>Learning rate</td>
+<td  colspan="4">1e-5, 2e-5, 3e-5, 4e-5</td>
+  </tr>
+  <tr>
+    <td>Learning rate schedule</td>
+    <td  colspan="4">constant, linear, cosine </td>
+  </tr>
+</table>
+ 
+  <table>
   <tr>
     <td>Hyperparameter</td>
     <td> </td>
+   <td> </td>
+  </tr>
+  <tr>
+    <td colspan="2">Three</td>
+  </tr>
+</table>
+ 
+ <table>
+  <tr>
+    <td>One</td>
+    <td>Two</td>
   </tr>
   <tr>
     <td colspan="2">Three</td>
