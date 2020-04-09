@@ -16,7 +16,8 @@ The background of the thesis is the Fake News Challenge which was held in 2017. 
 In total, two datasets are used to finetune the five models. The first dataset comes from the Fake News Challenge itself,   
 while the second dataset is an extesion that was created by [Hanselowski et al](https://arxiv.org/pdf/1806.05180.pdf).  
 Both datasets consist of article bodies, headlines and class labels. The class label expresses the stance of the article body  
-towards the headline. The article body can either *Agree* (AGR) or *Disagree* (DSG) with the headline, it can *Discuss* (DSC) it or be completely *Unrelated* (UNR). 
+towards the headline. The article body can either *Agree* (AGR) or *Disagree* (DSG) with the headline, it can *Discuss* (DSC) it  
+or be completely *Unrelated* (UNR). 
 
 | Dataset | Data Source | Data Type | Instances | AGR | DSG | DSC | UNR | 
 | :------ | :---------- | :-------- | :-------- | :---| :-- | :-- | :-- |
@@ -29,6 +30,18 @@ towards the headline. The article body can either *Agree* (AGR) or *Disagree* (D
 | Concatenation | Headline + Article body | 
 | Stop word removal   | The, the, A, a, An, an |
 | Train-dev split | 80:20 |
+
+## Models
+In total, five models are examined and their implementation of [HuggingFace](https://huggingface.co/transformers/) is used.  
+
+| Model | Publication Date | Published By | Idea in a nutshell
+| :---- | :--------------- | :----------- | :-------------- |
+| [BERT](https://arxiv.org/pdf/1810.04805.pdf)  | October 2018 | Google AI Language | Bidirectional Encoders from Transformer |
+| [RoBERTa](https://arxiv.org/pdf/1907.11692.pdf)   | July 2019 | Facebook AI & University of Washington | Train BERT longer |
+| [DistilBERT](https://arxiv.org/pdf/1910.01108.pdf) | August 2019 | HuggingFace | Distill BERT |
+| [ALBERT](https://arxiv.org/pdf/1909.11942.pdf) | September 2019 | Google Research & Toyota Technological Institute at Chicago | Distill BERT |
+| [XLNet](https://arxiv.org/pdf/1906.08237.pdf) | June 2019 | Carnegie Mellon University & Google Brain | Permutation Language Model |
+
 
 * the three model_exploration scripts are mainly the same except for the used freezing technique
 
