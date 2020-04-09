@@ -7,8 +7,8 @@
  
  <table>
   <tr>
-    <td>One</td>
-    <td>Two</td>
+    <td>Hyperparameter</td>
+    <td> </td>
   </tr>
   <tr>
     <td colspan="2">Three</td>
