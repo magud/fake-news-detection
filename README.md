@@ -80,7 +80,8 @@ and learning rate schedule and covers the following grid:
 
 ## Key Results
 1. RoBERTa performs best
-2. Learning rate is most important hyperparameter
+2. Encoder-based approach of RoBERTa beats autoregressive approach of XLNet
+3. Learning rate is most important hyperparameter
 
 
 ## Additional Remarks
