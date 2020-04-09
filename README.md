@@ -9,10 +9,7 @@
    <table>
   <tr>
     <td>Hyperparameter</td>
-  <td> </td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
+  <td colspan="4"> </td>
   </tr>
   <tr>
     <td>Sequence length</td>
