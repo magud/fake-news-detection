@@ -8,8 +8,7 @@
  
    <table>
   <tr>
-    <td>Hyperparameter</td>
-  <td colspan="4"> </td>
+    <td colspan="5">Hyperparameter</td>
   </tr>
   <tr>
     <td>Sequence length</td>
