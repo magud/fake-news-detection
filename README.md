@@ -54,9 +54,12 @@ freezes all embeddings layers.
 The second step consists of an extensive grid search over the hyperparameters learning rate, batch size, sequence length  
 and learning rate schedule and covers the following grid: 
 
-| Hyperparameter | |
-| :------------- | :----- |
-
+| Hyperparameter  |
+| :------------------ |  
+| Sequence length | 256 512 |
+| Batch size |16,32 4,8 |
+| Learning rate | 1e-5, 2e-5, 3e-5, 4e-5 |
+| Learning rate schedule | constant, linear, cosine |
 
 
 
