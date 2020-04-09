@@ -1,4 +1,4 @@
-| Hyperparameter <td colspan=2>        | 
+| Hyperparameter | |       | 
 | :-------------- | :----- | :-----  |
 | Sequence length | 256    | 512 |  
 | Batch size      | 16,32  | 4,8  |
