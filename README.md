@@ -59,7 +59,7 @@ __Hyperparameter__
 
 <table>
   <tr>
-    <td colspan="5">__Hyperparameter__</td>
+    <td colspan="5"><b>Hyperparameter</b></td>
   </tr>
   <tr>
     <td>Sequence length</td>
