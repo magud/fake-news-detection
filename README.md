@@ -78,6 +78,31 @@ and learning rate schedule and covers the following grid:
   </tr>
 </table>
 
+  <table>
+  <tr>
+    <td colspan="5">**Hyperparameter**</td>
+  </tr>
+  <tr>
+    <td>Sequence length</td>
+ <td  colspan="2">256</td>
+<td  colspan="2">512</td>
+  </tr>
+  <tr>
+    <td>Batch size</td>
+<td  colspan="2">16,32</td>
+<td  colspan="2">4,8</td>
+  </tr>
+  <tr>
+    <td>Learning rate</td>
+<td  colspan="4">1e-5, 2e-5, 3e-5, 4e-5</td>
+  </tr>
+  <tr>
+    <td>Learning rate schedule</td>
+    <td  colspan="4">constant, linear, cosine </td>
+  </tr>
+</table>
+
+
 ## Additional Remarks
 * the three model_exploration scripts are mainly the same except for the used freezing technique
 
