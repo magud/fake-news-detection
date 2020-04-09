@@ -2,7 +2,8 @@
 Master's thesis about evaluating BERT, RoBERTa, DistilBERT, ALBERT and XLNet for detecting stances of Fake News.
 
 ## Goal and Background
-In this master's thesis, the two datasets FNC-1 and FNC-ARC are used to finetune large pretrained NLP models  to classify the stances of article bodies towards their respective headline. 
+In this master's thesis, the two datasets FNC-1 and FNC-ARC are used to finetune large pretrained NLP models  
+to classify the stances of article bodies towards their respective headline. 
 
 The goal is to systematically analyze the following questions: 
 1. How well do the models perform in general?
