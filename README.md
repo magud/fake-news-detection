@@ -83,6 +83,49 @@ and learning rate schedule and covers the following grid:
 2. Encoder-based approach of RoBERTa beats autoregressive approach of XLNet
 3. Learning rate is most important hyperparameter
 
+## Remarks Scripts
+There are three main scripts:
+* data_prep.py
+* models_experiments.py
+* models_grid_search.py
+
+All three scripts are used via the command line.  
+To execute everything, first install necessary packages via 
+pip3 install -r requirements.txt
+
+### Details on Data Pre-Processing script
+Executing *python3 data_prep.py* yields a data split of the 
+training instances into *training* and *development* using the split function of the FNC-1.  
+
+THIS IS TAKEN FROM THE SCRIPT ITSELF
+data preprocessing
+
+data sets:  train and test
+data split: train into train and dev (=holdout) according to fnc-1
+
+available data: competition_, test_, train_
+for purpose of master thesis used: train_ --> split into train and dev (=holdout) as well as competition
+- train_bodies.csv
+- train_stances.csv
+- competition_test_bodies.csv
+- competition_test_stances.csv
+
+ assign int values to class labels
+ merge headlines and article bodies
+ remove stop characters not necessary
+ remove stop words 
+ build data frame 
+
+## Details on Initial Experiments script
+Executing *python3 models_experiments.py --freeze=none* is the script used to identify the best freezing technique. 
+The freeze flag is crucial and can be set to either *none*, *embed* or *all*.  
+
+## Details on Grid Search script
+Executing *python3 models_grid_search.py* is the script used that conducts the grid search over 48 hyperparameter combinations. 
+
+
+
+
 
 ## Additional Remarks
 * the three model_exploration scripts are mainly the same except for the used freezing technique
