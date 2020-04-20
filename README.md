@@ -92,7 +92,7 @@ There are three main scripts:
 All three scripts are used via the command line.  
 
 **To execute everything, first install necessary packages via 
-*pip3 install -r requirements.txt* **
+*pip3 install -r requirements.txt***
 
 ### Details on Data Pre-Processing script
 Executing *python3 data_prep.py* takes the files
