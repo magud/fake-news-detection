@@ -133,8 +133,8 @@ Go to **Details on Initial Experiments script** for details on the flags that ca
 The difference between the model_exploration scripts and model_grid_search is that 
 the latter relies on the use of tune to speed up training and to perform grid search.    
 
-In some cases, the model_grid_search didn't end for one run,   
-in that case, the evaluation and testing step were performed separately in addition. Check **Details on Grid Search scrip** for more details.  
+In some cases, the model_grid_search didn't end for one run, in that case, the evaluation and testing step  
+were performed separately in addition. Check **Details on Grid Search scrip** for more details.  
 
 The folders bert/, roberta/, distilbert/, albert/ and xlnet/ contain the used preloaded weights for all experiments and the grid search.  
 
