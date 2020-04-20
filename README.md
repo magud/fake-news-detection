@@ -90,8 +90,9 @@ There are three main scripts:
 * models_grid_search.py
 
 All three scripts are used via the command line.  
-To execute everything, first install necessary packages via 
-pip3 install -r requirements.txt
+
+**To execute everything, first install necessary packages via 
+*pip3 install -r requirements.txt* **
 
 ### Details on Data Pre-Processing script
 Executing *python3 data_prep.py* takes the files
@@ -114,6 +115,7 @@ The main pre-processing steps are
 ## Details on Initial Experiments script
 Executing *python3 model_exploration_freeze.py*, *python3 model_exploration_freeze_embed.py* and *python3 model_exploration_no_freeze.py* yields the evaluation of the three different freezing techniques. All models are trained for two epochs only and evaluation is done 
 with respect to the evaluation dataset.  
+
 The *--model* flag defines whether to use bert, roberta, distilbert, albert or xlnet  
 The *--model_type* flag takes the specific pretrained model from *HuggingFace*, for exampe *bert-base-cased* for *bert*  
 The *--num_epochs* flag is set to a default value of 2 epochs and should not be changed  
