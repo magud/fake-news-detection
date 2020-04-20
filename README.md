@@ -94,50 +94,44 @@ To execute everything, first install necessary packages via
 pip3 install -r requirements.txt
 
 ### Details on Data Pre-Processing script
-Executing *python3 data_prep.py* yields a data split of the 
-training instances into *training* and *development* using the split function of the FNC-1.  
-
-THIS IS TAKEN FROM THE SCRIPT ITSELF
-data preprocessing
-
-data sets:  train and test
-data split: train into train and dev (=holdout) according to fnc-1
-
-available data: competition_, test_, train_
-for purpose of master thesis used: train_ --> split into train and dev (=holdout) as well as competition
+Executing *python3 data_prep.py* takes the files
 - train_bodies.csv
 - train_stances.csv
 - competition_test_bodies.csv
 - competition_test_stances.csv
+for the FNC-1 and FNC-1 ARC dataset and fully processes them. 
+The processed files can be found under data/processed. For both datasets three files 
+are created for training (train), evaluation (dev) and testing (test) respectively.
 
- assign int values to class labels
- merge headlines and article bodies
- remove stop characters not necessary
- remove stop words 
- build data frame 
+The main pre-processing steps are
+1. assign integer values 0,1,2,3 to the four classes AGR, DSG, DSC, UNR
+2. merge headline and article body
+3. remove stop words *The*, *the*, *A*, *a*, *An*, *an* by using the word tokenizer of NLTK
+4. create split into  *training* and *development* using the 80:20 split function of the FNC-1
 
 ## Details on Initial Experiments script
-Executing *python3 models_experiments.py --freeze=none* is the script used to identify the best freezing technique. 
-The freeze flag is crucial and can be set to either *none*, *embed* or *all*.  
+Executing *python3 model_exploration_freeze.py*, *python3 model_exploration_freeze_embed.py* and *python3 model_exploration_no_freeze.py* yields the evaluation of the three different freezing techniques. All models are trained for two epochs only and evaluation is done 
+with respect to the evaluation dataset.  
+The *--model* flag defines whether to use bert, roberta, distilbert, albert or xlnet  
+The *--model_type* flag takes the specific pretrained model from *HuggingFace*, for exampe *bert-base-cased* for *bert*
+The *--num_epochs* flag is set to a default value of 2 epochs and should not be changed
+The *--dataset_name* flag can be used to switch between the FNC-1 and FNC-1 ARC dataset
 
 ## Details on Grid Search script
 Executing *python3 models_grid_search.py* is the script used that conducts the grid search over 48 hyperparameter combinations. 
+It uses the *tune* package. In case the code couldn't finish due to for example storage capacity on the virtual machine, the evaluation and testing was redone in a separate script called *models_grid_search_eval_separate.py* and *models_grid_search_test_separate.py* respectively.  
 
-
+**Important**: the current learning rate has to be set manually within the script in the search_space dictionary. The storage capacity of the virtual machine only allowed for saving 12 model combinations at the same time. Thus for each model and dataset, the script *models_grid_search.py* had to be run 4 times for each of the learning rates separately. 
 
 
 
 ## Additional Remarks
-* the three model_exploration scripts are mainly the same except for the used freezing technique
+The difference between the model_exploration scripts and model_grid_search is that 
+the latter relies on the use of tune to speed up training and to perform grid search
 
-* model_grid_search requires a manual definition of the current learning rate in the search_space dictionary
+In some cases, the model_grid_search didn't end for one run,   
+in that case, the evaluation and testing step were performed separately in addition. Check **Details on Grid Search scrip** for more details.
 
-* difference between the model_exploration scripts and model_grid_search:  
- 	the latter relies on the use of tune to speed up training and to perform grid search
+The folders bert/, roberta/, distilbert/, albert/ and xlnet/ contain the used preloaded weights for all experiments and the grid search.
 
-* in some cases, the model_grid_search didn't end for one run,   
-in that case, the evaluation and testing step were performed separately in addition
-
-* bert/, roberta/, distilbert/, albert/ and xlnet/ contain the used preloaded weights for all experiments and the grid search
-
-* all output files can be found under results/
+All output files can be found under the folder results/
