@@ -125,7 +125,9 @@ The *--dataset_name* flag can be used to switch between the FNC-1 and FNC-1 ARC 
 Executing *python3 models_grid_search.py* is the script used that conducts the grid search over 48 hyperparameter combinations.  
 It uses the *tune* package. In case the code couldn't finish due to for example storage capacity on the virtual machine, the evaluation and testing was redone in a separate script called *models_grid_search_eval_separate.py* and *models_grid_search_test_separate.py* respectively.  
 
-**Important**: the current learning rate has to be set manually within the script in the search_space dictionary. The storage capacity of the virtual machine only allowed for saving 12 model combinations at the same time. Thus for each model and dataset, the script *models_grid_search.py* had to be run 4 times for each of the learning rates separately.  
+**Important**: the current learning rate has to be set manually within the script in the search_space dictionary.  
+The storage capacity of the virtual machine only allowed for saving 12 model combinations at the same time.  
+Thus for each model and dataset, the script *models_grid_search.py* had to be run 4 times for each of the learning rates separately.  
 
 Go to **Details on Initial Experiments script** for details on the flags that can be set. 
 
