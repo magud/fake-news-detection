@@ -113,12 +113,12 @@ The main pre-processing steps are
 Executing *python3 model_exploration_freeze.py*, *python3 model_exploration_freeze_embed.py* and *python3 model_exploration_no_freeze.py* yields the evaluation of the three different freezing techniques. All models are trained for two epochs only and evaluation is done 
 with respect to the evaluation dataset.  
 The *--model* flag defines whether to use bert, roberta, distilbert, albert or xlnet  
-The *--model_type* flag takes the specific pretrained model from *HuggingFace*, for exampe *bert-base-cased* for *bert*
-The *--num_epochs* flag is set to a default value of 2 epochs and should not be changed
-The *--dataset_name* flag can be used to switch between the FNC-1 and FNC-1 ARC dataset
+The *--model_type* flag takes the specific pretrained model from *HuggingFace*, for exampe *bert-base-cased* for *bert*  
+The *--num_epochs* flag is set to a default value of 2 epochs and should not be changed  
+The *--dataset_name* flag can be used to switch between the FNC-1 and FNC-1 ARC dataset  
 
 ## Details on Grid Search script
-Executing *python3 models_grid_search.py* is the script used that conducts the grid search over 48 hyperparameter combinations. 
+Executing *python3 models_grid_search.py* is the script used that conducts the grid search over 48 hyperparameter combinations.  
 It uses the *tune* package. In case the code couldn't finish due to for example storage capacity on the virtual machine, the evaluation and testing was redone in a separate script called *models_grid_search_eval_separate.py* and *models_grid_search_test_separate.py* respectively.  
 
 **Important**: the current learning rate has to be set manually within the script in the search_space dictionary. The storage capacity of the virtual machine only allowed for saving 12 model combinations at the same time. Thus for each model and dataset, the script *models_grid_search.py* had to be run 4 times for each of the learning rates separately. 
@@ -127,11 +127,11 @@ It uses the *tune* package. In case the code couldn't finish due to for example 
 
 ## Additional Remarks
 The difference between the model_exploration scripts and model_grid_search is that 
-the latter relies on the use of tune to speed up training and to perform grid search
+the latter relies on the use of tune to speed up training and to perform grid search.    
 
 In some cases, the model_grid_search didn't end for one run,   
-in that case, the evaluation and testing step were performed separately in addition. Check **Details on Grid Search scrip** for more details.
+in that case, the evaluation and testing step were performed separately in addition. Check **Details on Grid Search scrip** for more details.  
 
-The folders bert/, roberta/, distilbert/, albert/ and xlnet/ contain the used preloaded weights for all experiments and the grid search.
+The folders bert/, roberta/, distilbert/, albert/ and xlnet/ contain the used preloaded weights for all experiments and the grid search.  
 
-All output files can be found under the folder results/
+All output files can be found under the folder results/  
