@@ -101,16 +101,17 @@ Executing *python3 data_prep.py* takes the files
 - competition_test_bodies.csv
 - competition_test_stances.csv  
 
-for the FNC-1 and FNC-1 ARC dataset and fully processes them. 
-The processed files can be found under data/processed.  
-For both datasets three files 
-are created for training (train), evaluation (dev) and testing (test) respectively.
+for the FNC-1 and FNC-1 ARC dataset and fully processes them.  
+The processed files can be found under data/processed.    
+For both datasets three files are created for training (train), evaluation (dev) and testing (test) respectively.
 
 The main pre-processing steps are
 1. assign integer values 0,1,2,3 to the four classes AGR, DSG, DSC, UNR
 2. merge headline and article body
 3. remove stop words *The*, *the*, *A*, *a*, *An*, *an* by using the word tokenizer of NLTK
-4. create split into  *training* and *development* by using the 80:20 split function of the FNC-1
+4. create split into  *training* and *development* by using the 80:20 split function of the FNC-1  
+
+The folder data/splits contains the ids for the training and evaluation (*hold_out*) instances.
 
 ## Details on Initial Experiments script
 Executing *python3 model_exploration_freeze.py*, *python3 model_exploration_freeze_embed.py* and *python3 model_exploration_no_freeze.py* yields the evaluation of the three different freezing techniques. All models are trained for two epochs only and evaluation is done 
