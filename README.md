@@ -101,7 +101,8 @@ Executing *python3 data_prep.py* takes the files
 - competition_test_stances.csv  
 
 for the FNC-1 and FNC-1 ARC dataset and fully processes them. 
-The processed files can be found under data/processed. For both datasets three files 
+The processed files can be found under data/processed.  
+For both datasets three files 
 are created for training (train), evaluation (dev) and testing (test) respectively.
 
 The main pre-processing steps are
@@ -123,8 +124,6 @@ Executing *python3 models_grid_search.py* is the script used that conducts the g
 It uses the *tune* package. In case the code couldn't finish due to for example storage capacity on the virtual machine, the evaluation and testing was redone in a separate script called *models_grid_search_eval_separate.py* and *models_grid_search_test_separate.py* respectively.  
 
 **Important**: the current learning rate has to be set manually within the script in the search_space dictionary. The storage capacity of the virtual machine only allowed for saving 12 model combinations at the same time. Thus for each model and dataset, the script *models_grid_search.py* had to be run 4 times for each of the learning rates separately. 
-
-
 
 ## Additional Remarks
 The difference between the model_exploration scripts and model_grid_search is that 
