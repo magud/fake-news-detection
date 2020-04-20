@@ -98,7 +98,7 @@ Executing *python3 data_prep.py* takes the files
 - train_bodies.csv
 - train_stances.csv
 - competition_test_bodies.csv
-- competition_test_stances.csv
+- competition_test_stances.csv  
 for the FNC-1 and FNC-1 ARC dataset and fully processes them. 
 The processed files can be found under data/processed. For both datasets three files 
 are created for training (train), evaluation (dev) and testing (test) respectively.
