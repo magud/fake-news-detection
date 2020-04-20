@@ -127,7 +127,7 @@ It uses the *tune* package. In case the code couldn't finish due to for example 
 
 **Important**: the current learning rate has to be set manually within the script in the search_space dictionary. The storage capacity of the virtual machine only allowed for saving 12 model combinations at the same time. Thus for each model and dataset, the script *models_grid_search.py* had to be run 4 times for each of the learning rates separately.  
 
-Go to *Details on Initial Experiments script* for details on the flags that can be set. 
+Go to **Details on Initial Experiments script** for details on the flags that can be set. 
 
 ## Additional Remarks
 The difference between the model_exploration scripts and model_grid_search is that 
