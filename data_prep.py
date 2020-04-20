@@ -1,21 +1,3 @@
-# data preprocessing
-
-# data sets:  train and test
-# data split: train into train and dev (=holdout) according to fnc-1
-
-# available data: competition_, test_, train_
-# for purpose of master thesis used: train_ --> split into train and dev (=holdout) as well as competition
-# - train_bodies.csv
-# - train_stances.csv
-# - competition_test_bodies.csv
-# - competition_test_stances.csv
-
-# assign int values to class labels
-# merge headlines and article bodies
-# remove stop characters not necessary
-# remove stop words 
-# build data frame 
-
 from src.utils import (DataSet, 
                 generate_hold_out_split,
                 labels_to_int)
