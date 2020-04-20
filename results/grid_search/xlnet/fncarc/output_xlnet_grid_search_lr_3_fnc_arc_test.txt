@@ -1,0 +1,801 @@
+Script started on 2020-02-17 11:15:41+0000
+ubuntu@run-gpu-mg:~/fnd_implementation$ exittime python3 eval_separate.py --model=xlnnet --model_type=xlnet-base-cased --dataset_name=fnc_arcM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C_separate.py --model=xlne[1PM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C_separate.py --model=xlnet[1PM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C_separate.py --model=xlnet [1PM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C_separate.py --model=xlnet -[C[1PM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ct_separate.py --model=xlnet [C[1@-M[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ce_separate.py --model=xlnet[1@ M[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cs_separate.py --model=xlne[1@tM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ct_separate.py --model=xln[1@eM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:541: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:542: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:543: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:544: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:545: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/home/ubuntu/.local/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:550: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+There are 2 GPU(s) available.
+The following GPU is used:  Tesla V100-PCIE-16GB
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/xlnet-base-cased-spiece.model from cache at /home/ubuntu/.cache/torch/transformers/dad589d582573df0293448af5109cb6981ca77239ed314e15ca63b7b8a318ddd.8b10bd978b5d01c21303cc761fc9ecd464419b3bf921864a355ba807cfbfafa8
+INFO:transformers.configuration_utils:loading configuration file /home/ubuntu/fnd_implementation/xlnet/model_pretrained/config.json
+INFO:transformers.configuration_utils:Model config {
+  "attn_type": "bi",
+  "bi_data": false,
+  "clamp_len": -1,
+  "d_head": 64,
+  "d_inner": 3072,
+  "d_model": 768,
+  "dropout": 0.1,
+  "end_n_top": 5,
+  "ff_activation": "gelu",
+  "finetuning_task": null,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "mem_len": null,
+  "n_head": 12,
+  "n_layer": 12,
+  "num_labels": 4,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pruned_heads": {},
+  "reuse_len": null,
+  "same_length": false,
+  "start_n_top": 5,
+  "summary_activation": "tanh",
+  "summary_last_dropout": 0.1,
+  "summary_type": "last",
+  "summary_use_proj": true,
+  "torchscript": false,
+  "untie_r": true,
+  "use_bfloat16": false,
+  "vocab_size": 32000
+}
+
+INFO:transformers.modeling_utils:loading weights file /home/ubuntu/fnd_implementation/xlnet/model_pretrained/pytorch_model.bin
+INFO:__main__:Loading initialized pretrained model from /home/ubuntu/fnd_implementation/xlnet/model_pretrained
+  ******************************************* 
+           Freezing Embedding Layers          
+  *******************************************
+ 
+name:  transformer.mask_emb
+param.requires_grad:  False
+=====
+name:  transformer.word_embedding.weight
+param.requires_grad:  False
+=====
+name:  transformer.layer.0.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.0.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.1.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.2.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.3.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.4.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.5.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.6.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.7.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.8.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.9.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.10.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.rel_attn.q
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.rel_attn.k
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.rel_attn.v
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.rel_attn.o
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.rel_attn.r
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.rel_attn.r_r_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.rel_attn.r_s_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.rel_attn.r_w_bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.rel_attn.seg_embed
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.rel_attn.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.rel_attn.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.ff.layer_norm.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.ff.layer_norm.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.ff.layer_1.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.ff.layer_1.bias
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.ff.layer_2.weight
+param.requires_grad:  True
+=====
+name:  transformer.layer.11.ff.layer_2.bias
+param.requires_grad:  True
+=====
+name:  sequence_summary.summary.weight
+param.requires_grad:  True
+=====
+name:  sequence_summary.summary.bias
+param.requires_grad:  True
+=====
+name:  logits_proj.weight
+param.requires_grad:  True
+=====
+name:  logits_proj.bias
+param.requires_grad:  True
+=====
+/home/ubuntu/fnd_implementation/xlnet/grid_search/results/pipeline_73ac6694_2020-02-16_18-38-09yg6rkgu9/params.json
+INFO:transformers.configuration_utils:loading configuration file /home/ubuntu/fnd_implementation/xlnet/grid_search/results/pipeline_73ac6694_2020-02-16_18-38-09yg6rkgu9/outputs/checkpoint-3/config.json
+INFO:transformers.configuration_utils:Model config {
+  "attn_type": "bi",
+  "bi_data": false,
+  "clamp_len": -1,
+  "d_head": 64,
+  "d_inner": 3072,
+  "d_model": 768,
+  "dropout": 0.1,
+  "end_n_top": 5,
+  "ff_activation": "gelu",
+  "finetuning_task": null,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "mem_len": null,
+  "n_head": 12,
+  "n_layer": 12,
+  "num_labels": 4,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pruned_heads": {},
+  "reuse_len": null,
+  "same_length": false,
+  "start_n_top": 5,
+  "summary_activation": "tanh",
+  "summary_last_dropout": 0.1,
+  "summary_type": "last",
+  "summary_use_proj": true,
+  "torchscript": false,
+  "untie_r": true,
+  "use_bfloat16": false,
+  "vocab_size": 32000
+}
+
+INFO:transformers.modeling_utils:loading weights file /home/ubuntu/fnd_implementation/xlnet/grid_search/results/pipeline_73ac6694_2020-02-16_18-38-09yg6rkgu9/outputs/checkpoint-3/pytorch_model.bin
+INFO:__main__:Creating features from dataset file at /home/ubuntu/fnd_implementation/data/processed
+  0%|                                                 | 0/28972 [00:00<?, ?it/s]  0%|                                       | 1/28972 [00:00<8:01:51,  1.00it/s]  2%|▋                                    | 501/28972 [00:01<5:31:38,  1.43it/s]  3%|█▏                                  | 1001/28972 [00:01<3:48:07,  2.04it/s] 28%|█████████▉                          | 8001/28972 [00:02<1:59:44,  2.92it/s] 66%|████████████████████████▎            | 19001/28972 [00:02<39:51,  4.17it/s] 86%|███████████████████████████████▉     | 25001/28972 [00:02<11:06,  5.96it/s]100%|███████████████████████████████████| 28972/28972 [00:02<00:00, 9685.78it/s]
+INFO:__main__:  ******************************************* 
+INFO:__main__:              Running Final Testing           
+INFO:__main__:  ******************************************* 
+ 
+INFO:__main__:  ******************************************* 
+INFO:__main__:  Model: xlnet
+INFO:__main__:  Length dataset testing: 28972
+INFO:__main__:  Length dataloader testing: 1811
+INFO:__main__:  Number of epochs: 3
+INFO:__main__:  Maximal sequence length: 256
+INFO:__main__:  Batch size: 16
+INFO:__main__:  Learning rate: 3e-05
+INFO:__main__:  Learning rate type: linear
+INFO:__main__:  ******************************************* 
+ 
+test_separate.py:224: TqdmDeprecationWarning: This function will be removed in tqdm==5.0.0
+Please use `tqdm.notebook.tqdm` instead of `tqdm.tqdm_notebook`
+  for batch in tqdm_notebook(test_dataloader, desc="Testing"):
+HBox(children=(FloatProgress(value=0.0, description='Testing', max=1811.0, style=ProgressStyle(description_width='initial')), HTML(value='')))
+
+-------------------------------------------------------------
+|           |   agree   | disagree  |  discuss  | unrelated |
+-------------------------------------------------------------
+|   agree   |   1561    |    279    |    495    |    93     |
+-------------------------------------------------------------
+| disagree  |    115    |    496    |    120    |    30     |
+-------------------------------------------------------------
+|  discuss  |    527    |    262    |   3877    |    309    |
+-------------------------------------------------------------
+| unrelated |    34     |    32     |    151    |   20591   |
+-------------------------------------------------------------
+Score: 21046.25 out of 22597.75	(93.13427221736677%)
+Accuracy: 0.9155391412398177
+F1 overall: 0.7504993553921182
+F1 per class: [0.6692390139335477, 0.5420765027322404, 0.8061967144936577, 0.9844851904090268]
+
+real	6m33.930s
+user	23m11.791s
+sys	2m19.561s
+ubuntu@run-gpu-mg:~/fnd_implementation$ t[Kexit
+exit
+
+Script done on 2020-02-17 11:32:30+0000
