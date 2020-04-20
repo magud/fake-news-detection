@@ -86,7 +86,7 @@ and learning rate schedule and covers the following grid:
 ## Remarks Scripts
 There are three main scripts:
 * data_prep.py
-* models_experiments.py
+* models_exploration.py
 * models_grid_search.py
 
 All three scripts are used via the command line.  
