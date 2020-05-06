@@ -4,8 +4,8 @@
 from __future__ import absolute_import, division, print_function
 
 import sys
-sys.path.append('/home/ubuntu/.local/lib/python3.6/site-packages')
-sys.path.append('/home/ubuntu/fnd_implementation')
+#sys.path.append('/home/ubuntu/.local/lib/python3.6/site-packages')
+#sys.path.append('/home/ubuntu/fnd_implementation')
 import argparse
 
 import glob
@@ -57,9 +57,9 @@ parser.add_argument('--dataset_name', type=str, default='fnc', metavar='N',
 args = parser.parse_args()
 
 args_add = {
-    'data_dir': '/home/ubuntu/fnd_implementation/data/processed',
+    'data_dir': '/home/ubuntu/maike/data/processed',
     'task_name': 'multi',
-    'output_dir': 'exploration/freeze/outputs/',
+    'output_dir': 'experiments/freeze/outputs/',
         
     'output_mode': 'classification',
 
@@ -77,6 +77,13 @@ if torch.cuda.is_available():
     print("There are %d GPU(s) available." % torch.cuda.device_count())
     print('The following GPU is used: ', torch.cuda.get_device_name(0))
 
+# fix the seed and make cudnn deterministic
+# following this tutorial: https://www.learnopencv.com/ensuring-training-reproducibility-in-pytorch/
+seed = 3
+torch.manual_seed(seed)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+
 MODEL_CLASSES = {
     'bert': (BertConfig, BertForSequenceClassification, BertTokenizer),
     'roberta': (RobertaConfig, RobertaForSequenceClassification, RobertaTokenizer),
@@ -93,7 +100,7 @@ task = args_add['task_name']
 
 LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
 
-output_dir_model = os.path.join('/home/ubuntu/fnd_implementation/', args.model, 'model_pretrained')
+output_dir_model = os.path.join('/home/ubuntu/maike/', args.model, 'model_pretrained')
 
 # if model was already used in last experiment, use exact same model again
 if os.path.exists(output_dir_model):
@@ -348,7 +355,7 @@ def train_eval(model, tokenizer, config, tb_writer=None):
 model_name = args.model
 epoch_num = args.num_epochs
 comment = f' model={model_name} epochs={epoch_num} freeze'
-directory = os.path.join(args.model, 'exploration/freeze/runs', comment)
+directory = os.path.join(args.model, 'experiments/freeze/runs', comment)
 tb_writer = SummaryWriter(directory, comment=comment)
 
 train_eval(model, tokenizer, config=search_space, tb_writer=tb_writer)

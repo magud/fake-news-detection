@@ -1,3 +1,7 @@
 {
-    "python.pythonPath": "C:\\Users\\maguderl\\Anaconda3\\envs\\test\\python.exe"
+    "python.pythonPath": "C:\\Users\\maike\\anaconda3\\python.exe",
+    "python.linting.pylintArgs": [
+        "--errors-only",
+        "--generated-members=numpy.*,torch.*,*.data,*.grad"
+        ]
 }

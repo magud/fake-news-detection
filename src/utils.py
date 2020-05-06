@@ -448,7 +448,12 @@ def freeze(model_type, model):
     if model_type == "bert":
         for param in model.bert.parameters():
             param.requires_grad = False
-        model.bert.pooler.dense.requires_grad_(True)
+        # first option was implemented so far, doesn't work anymore
+        # second option does not operate as expected
+        #model.bert.pooler.dense.requires_grad_(True)
+        #model.bert.pooler.dense.requires_grad = True
+        model.bert.pooler.dense.weight.requires_grad = True
+        model.bert.pooler.dense.bias.requires_grad = True
         for name, param in model.named_parameters():
             print('name: ', name)
             print('param.requires_grad: ', param.requires_grad)
@@ -457,7 +462,9 @@ def freeze(model_type, model):
     if model_type == "roberta" or model_type == "distilbert":
         for param in model.roberta.parameters():
             param.requires_grad = False
-        model.roberta.pooler.dense.requires_grad_(True)
+        #model.roberta.pooler.dense.requires_grad_(True)
+        model.roberta.pooler.dense.weight.requires_grad = True
+        model.roberta.pooler.dense.bias.requires_grad = True
         for name, param in model.named_parameters():
             print('name: ', name)
             print('param.requires_grad: ', param.requires_grad)
@@ -466,7 +473,9 @@ def freeze(model_type, model):
     if model_type == "albert":
         for param in model.albert.parameters():
             param.requires_grad = False
-        model.albert.pooler.requires_grad_(True)
+        #model.albert.pooler.requires_grad_(True)
+        model.albert.pooler.dense.weight.requires_grad = True
+        model.albert.pooler.dense.bias.requires_grad = True
         for name, param in model.named_parameters():
             print('name: ', name)
             print('param.requires_grad: ', param.requires_grad)

@@ -4,8 +4,8 @@
 from __future__ import absolute_import, division, print_function
 
 import sys
-sys.path.append('/home/ubuntu/.local/lib/python3.6/site-packages')
-sys.path.append('/home/ubuntu/fnd_implementation')
+#sys.path.append('/home/ubuntu/.local/lib/python3.6/site-packages')
+#sys.path.append('/home/ubuntu/fnd_implementation')
 import argparse
 
 import glob
@@ -57,7 +57,7 @@ parser.add_argument('--dataset_name', type=str, default='fnc', metavar='N',
 args = parser.parse_args()
 
 args_add = {
-    'data_dir': '/home/ubuntu/fnd_implementation/data/processed',
+    'data_dir': '/home/ubuntu/maike/data/processed',
     'task_name': 'multi',
     'output_dir': 'exploration/freeze_embed/outputs/',
         
@@ -95,7 +95,7 @@ task = args_add['task_name']
 
 LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
 
-output_dir_model = os.path.join('/home/ubuntu/fnd_implementation/', args.model, 'model_pretrained')
+output_dir_model = os.path.join('/home/ubuntu/maike/', args.model, 'model_pretrained')
 
 # if model was already used in last experiment, use exact same model again
 if os.path.exists(output_dir_model):
