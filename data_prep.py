@@ -4,11 +4,6 @@ from src.utils import (DataSet,
 import pandas as pd
 import nltk
 import os
-# when running the script on vm this line is necessary, not sure why, see
-#   https://github.com/b0noI/dialog_converter/issues/7
-nltk.download('punkt')
-
-#########################################################################################
 
 def data_processing(name="train", dataset_name="fnc", output_dir="data/processed/"):
     """ 
@@ -34,12 +29,9 @@ def data_processing(name="train", dataset_name="fnc", output_dir="data/processed
     data = dataset.data_merged
     # take their body ids to generate hold out split
     bodies = dataset.bodies
-    #stances = data.stances
 
     # create columns for multi and binary label
     data["label_multi"], data["label_bin"] = data["Stance"], data["Stance"]
-
-    #data.label_multi.value_counts()  
 
     # assign integer values to class labels
     label_int_multi = {
@@ -59,7 +51,7 @@ def data_processing(name="train", dataset_name="fnc", output_dir="data/processed
     labels_to_int(data.label_multi, label_int_multi)
     labels_to_int(data.label_bin, label_int_bin)
 
-    # make sure, values are saved as actual integers --> doesn't work when directly integrated in function?!
+    # make sure, values are saved as actual integers
     data.label_bin = data.label_bin.astype("int64")
     data.label_multi = data.label_multi.astype("int64")
 
