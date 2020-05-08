@@ -135,7 +135,7 @@ Thus for each model and dataset, the script *models_grid_search.py* had to be ru
 Go to **Details on Initial Experiments script** for details on the flags that can be set. 
 
 ## Additional Remarks
-The difference between the model_exploration scripts and model_grid_search is that 
+The difference between the experiments scripts and model_grid_search is that 
 the latter relies on the use of tune to speed up training and to perform grid search.    
 
 In some cases, the model_grid_search didn't end for one run, in that case, the evaluation and testing step  
