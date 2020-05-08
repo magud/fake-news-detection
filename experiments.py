@@ -1,31 +1,21 @@
 # based on:
 # https://github.com/huggingface/transformers/blob/master/examples/run_glue.py
 
-#from __future__ import absolute_import, division, print_function
-
 import sys
-#sys.path.append('/home/ubuntu/.local/lib/python3.6/site-packages')
-#sys.path.append('/home/ubuntu/fnd_implementation')
 import argparse
-
 import glob
 import logging
 import os
 import random
-
 import math
 import numpy as np
 import torch
-from torch.utils.data import (DataLoader, RandomSampler, SequentialSampler,
-                              TensorDataset)
+from torch.utils.data import (DataLoader, RandomSampler, SequentialSampler, TensorDataset)
 from tqdm import tqdm_notebook, trange
 from tensorboardX import SummaryWriter
-
 from sklearn.metrics import accuracy_score
-
 from transformers import (WEIGHTS_NAME, 
                             BertConfig, BertForSequenceClassification, BertTokenizer,
-                            # used for Roberta and Distilbert
                             RobertaConfig, RobertaForSequenceClassification, RobertaTokenizer, 
                             AlbertConfig, AlbertForSequenceClassification, AlbertTokenizer,
                             XLNetConfig, XLNetForSequenceClassification, XLNetTokenizer,
@@ -34,9 +24,7 @@ from transformers import (WEIGHTS_NAME,
                             get_linear_schedule_with_warmup,
                             get_cosine_schedule_with_warmup
                         )
-
 from src.utils import (convert_examples_to_features,
-                        #output_modes, 
                         processors, 
                         score_submission, print_confusion_matrix, get_matches, get_f1, get_f1_overall,
                         log_scalar, log_weights,
@@ -46,7 +34,7 @@ from src.utils import (convert_examples_to_features,
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Command-line arguments
+# command-line arguments
 parser = argparse.ArgumentParser(description='FN Challenge')
 parser.add_argument('--model', type=str, default='bert', metavar='N',
                     help='Model to evaluate, choose bert, roberta, distilbert, albert or xlnet, (default: bert)')
@@ -74,28 +62,10 @@ parser.add_argument('--home_path', type=str, default='/home/ubuntu/maike/', meta
                     help='General path')
 parser.add_argument('--data_path', type=str, default='data/processed', metavar='N',
                     help='Path of processed data')
-parser.add_argument('--results_path', type=str, default='/experiments/freeze/outputs', metavar='N',
-                    help='Path of processed data')  
+parser.add_argument('--freeze', type=str, default='freeze_embed', metavar='N',
+                    help='Freezing technique for finetuning. Choose between "freeze", "no_freeze" and "freeze_embed".')  
 
 args = parser.parse_args()
-#data_dir = args.home_path + args.data_path
-
-args_add = {
-    #'data_dir': '/home/ubuntu/maike/data/processed',
-    #'task_name': 'multi',
-    'output_dir': 'experiments/freeze/outputs/',
-        
-    #'output_mode': 'classification',
-
-    #'gradient_accumulation_steps': 1,
-    #'adam_epsilon': 1e-8,
-    #'warmup_ratio': 0.06,
-    #'warmup_steps': 0,
-    #'max_grad_norm': 1.0, 
-    #'num_logging': 50
-}
-
-
 
 # inspect availability of GPU power
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -104,12 +74,11 @@ if torch.cuda.is_available():
     print('The following GPU is used: ', torch.cuda.get_device_name(0))
 
 # fix the seed and make cudnn deterministic
-# following this tutorial: https://www.learnopencv.com/ensuring-training-reproducibility-in-pytorch/
 torch.manual_seed(args.seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-MODEL_CLASSES = {
+model_classes = {
     'bert': (BertConfig, BertForSequenceClassification, BertTokenizer),
     'roberta': (RobertaConfig, RobertaForSequenceClassification, RobertaTokenizer),
     'distilbert': (RobertaConfig, RobertaForSequenceClassification, RobertaTokenizer),
@@ -117,33 +86,52 @@ MODEL_CLASSES = {
     'xlnet': (XLNetConfig, XLNetForSequenceClassification, XLNetTokenizer),
 }
 
-config_class, model_class, tokenizer_class = MODEL_CLASSES[args.model]
+config_class, model_class, tokenizer_class = model_classes[args.model]
 
 tokenizer = tokenizer_class.from_pretrained(args.model_type, do_lower_case=False)
 
 task = args.task_name
 
-LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
+labels = ['agree', 'disagree', 'discuss', 'unrelated']
 
+# setting up main directories to save loaded pretrained model and checkpoints
+checkpoint_dir = 'experiments/' + args.freeze + '/outputs'
 output_dir_model = os.path.join(args.home_path, args.model, 'model_pretrained')
-#output_dir_model = os.path.join('/home/ubuntu/maike/', args.model, 'model_pretrained')
 
-# if model was already used in last experiment, use exact same model again
+# use same randomly initialized classification layers for all experiments
 if os.path.exists(output_dir_model):
     model = model_class.from_pretrained(output_dir_model)
     logger.info("Loading initialized pretrained model from %s", output_dir_model)
 else:
     os.makedirs(output_dir_model)
     model = model_class.from_pretrained(args.model_type, num_labels=4)
-    model = model.module if hasattr(model, 'module') else model  # Take care of distributed/parallel training
+    # necessary for distributed/parallel training 
+    model = model.module if hasattr(model, 'module') else model 
     model.save_pretrained(output_dir_model)
     logger.info("Saving initialized pretrained model to %s", output_dir_model)
 
-print("  ******************************************* ")
-print("           Freezing All Layers                ")
-print("  *******************************************\n ")
-freeze(args.model, model)
+# start freezing technique
+if args.freeze == "freeze":
+    print("  ******************************************* ")
+    print("           Freezing All Layers                ")
+    print("  *******************************************\n ")
+    freeze(args.model, model)
+if args.freeze == "freeze_embed":
+    print("  ******************************************* ")
+    print("           Freezing Embedding Layers          ")
+    print("  *******************************************\n ")
+    freeze_embed(args.model, model)
+elif args.freeze == "no_freeze": 
+    print("  ******************************************* ")
+    print("           Freezing No Layers          ")
+    print("  *******************************************\n ")
+# check if correct freezing technique is used
+for name, param in model.named_parameters():
+    print('name: ', name)
+    print('param.requires_grad: ', param.requires_grad)
+    print('=====')
 
+# define fixed search space for experimental set up
 search_space = {
     "batch_size": 8, 
     "max_seq_length": 512,
@@ -194,16 +182,7 @@ def train_eval(model, tokenizer, config, tb_writer=None):
     model.zero_grad()
     
     t_total = len(train_dataloader) * args.num_epochs
-    # how many checkpoints will there be for the model?
-    #num_checkpoints = int((len(train_dataloader) * args.num_epochs / args.batch_size) // args['save_steps'])
-
-    # for each experiment do around 50 logging steps
-    #   t_total / (no of logging steps) = logging steps
-    #   if t_total = 3750 and logging steps is 500, then logging is done 625 times
-    #   if t_total = 39977 then almost 80 times logging is done 
-    #   goal: take logging same time for every experiment, so around50 times 
     logging_steps = int(t_total/args.num_logging_steps)
-    
     warmup_steps = math.ceil(t_total * args.warmup_ratio)
     
     optimizer = AdamW(model.parameters(), lr=config['lr'], eps=args.adam_epsilon)
@@ -252,7 +231,7 @@ def train_eval(model, tokenizer, config, tb_writer=None):
                       'labels':         batch[3]}
             outputs = model(**inputs)
             loss = outputs[0]  
-            # print current loss as tracking possibility to see if model is still calculating
+            # as backup check to see if model is still running
             print("\r%f" % loss, end='')
                 
             loss.backward()
@@ -265,21 +244,20 @@ def train_eval(model, tokenizer, config, tb_writer=None):
             model.zero_grad()
             global_step += 1
             
-            # tracking loss has to be AFTER optimization steps were taken for whatever reason
+            # tracking loss has to be AFTER optimization steps were taken 
             if logging_steps > 0 and global_step % logging_steps == 0:
-                # also save evolution of weights
                 log_scalar('lr', scheduler.get_lr()[0], global_step, tb_writer)
                 log_scalar('loss_train', (tr_loss - logging_loss)/logging_steps, global_step, tb_writer)
-                # also save evolution of weights
                 log_weights(model, global_step, tb_writer)
                 logging_loss = tr_loss
 
         num_epoch += 1
 
-        output_dir = os.path.join(args.model, args_add['output_dir'], 'checkpoint-{}'.format(num_epoch))
+        output_dir = os.path.join(args.model, checkpoint_dir, 'checkpoint-{}'.format(num_epoch))
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
-        model_to_save = model.module if hasattr(model, 'module') else model  # Take care of distributed/parallel training
+        # necessary for distributed/parallel training 
+        model_to_save = model.module if hasattr(model, 'module') else model
         model_to_save.save_pretrained(output_dir)
         logger.info("Saving model checkpoint to %s", output_dir)
     
@@ -287,7 +265,7 @@ def train_eval(model, tokenizer, config, tb_writer=None):
     # EVALUATION
 
     # init eval structure
-    eval_output_dir = os.path.join(args.model, args_add['output_dir'])
+    eval_output_dir = os.path.join(args.model, checkpoint_dir)
     if not os.path.exists(eval_output_dir):
         os.makedirs(eval_output_dir)
 
@@ -309,9 +287,8 @@ def train_eval(model, tokenizer, config, tb_writer=None):
     nb_eval_steps = 0
     out_label_ids = None
 
-    checkpoints = [args_add['output_dir']]
-    print(checkpoints)
-    checkpoints = list(os.path.dirname(c) for c in sorted(glob.glob(args.model + '/' + args_add['output_dir'] + '/**/' + WEIGHTS_NAME, recursive=True)))
+    checkpoints = [checkpoint_dir]
+    checkpoints = list(os.path.dirname(c) for c in sorted(glob.glob(args.model + '/' + checkpoint_dir + '/**/' + WEIGHTS_NAME, recursive=True)))
     logger.info("Evaluate the following checkpoints: %s", checkpoints)
 
     for checkpoint in checkpoints:
@@ -335,7 +312,8 @@ def train_eval(model, tokenizer, config, tb_writer=None):
                 outputs = model(**inputs)
                 tmp_eval_loss, logits = outputs[:2]
 
-                eval_loss += tmp_eval_loss.item() # removed mean() since functionality is unclear --> for multi gpu use
+                # for multi gpu, use mean() functionality
+                eval_loss += tmp_eval_loss.item() 
 
             nb_eval_steps += 1
 
@@ -343,25 +321,21 @@ def train_eval(model, tokenizer, config, tb_writer=None):
             eval_loss = eval_loss / nb_eval_steps
             log_scalar('loss_eval', eval_loss, nb_eval_steps, tb_writer=tb_writer)
             
-            
             if preds is None:
                 preds = logits.detach().cpu().numpy()
                 out_label_ids = inputs['labels'].detach().cpu().numpy()
             else:
                 preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
                 out_label_ids = np.append(out_label_ids, inputs['labels'].detach().cpu().numpy(), axis=0)
-                        
-        
+                           
         preds = np.argmax(preds, axis=1)
         
         acc = accuracy_score(out_label_ids, preds)
         fnc_score, conf_matrix = score_submission(preds=preds, labels=out_label_ids)
         fnc_score_best, _ = score_submission(preds=out_label_ids, labels=out_label_ids)
         fnc_score_rel = (fnc_score*100)/fnc_score_best
-        f1, f1_scores = get_f1_overall(labels=LABELS, conf_matrix=conf_matrix)
+        f1, f1_scores = get_f1_overall(labels=labels, conf_matrix=conf_matrix)
 
-        #############################################
-        # info for console
         print("\n*******************************************")
         print("EVALUATION OF CHECKPOINT "+ checkpoint)
         print_confusion_matrix(conf_matrix)
@@ -378,9 +352,9 @@ def train_eval(model, tokenizer, config, tb_writer=None):
         log_scalar('f1', f1, nb_eval_steps, tb_writer=tb_writer)
 
 model_name = args.model
-epoch_num = args.num_epochs
-comment = f' model={model_name} epochs={epoch_num} freeze'
-directory = os.path.join(args.model, 'experiments/freeze/runs', comment)
+freezing_technique = args.freeze
+comment = f'{model_name}-{freezing_technique}'
+directory = os.path.join(args.model, 'experiments', args.freeze, 'runs', comment)
 tb_writer = SummaryWriter(directory, comment=comment)
 
 train_eval(model, tokenizer, config=search_space, tb_writer=tb_writer)
