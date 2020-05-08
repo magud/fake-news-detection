@@ -2,30 +2,23 @@ from __future__ import absolute_import, division, print_function
 
 import csv
 from csv import DictReader
-
 import os
 import sys
 from io import open
 import pandas as pd
-
 from scipy.stats import pearsonr, spearmanr
 from sklearn.metrics import matthews_corrcoef, f1_score
-
 from multiprocessing import Pool, cpu_count
 from tqdm import tqdm
-
 import logging
 from tensorboardX import SummaryWriter
 import mlflow
-
 import random
 from collections import defaultdict
-
 
 logger = logging.getLogger(__name__)
 csv.field_size_limit(2147483647)
 
-# used in data_prep
 class DataSet():
     def __init__(self, name="train", path="data/raw/fnc/"):
 
@@ -58,7 +51,6 @@ class DataSet():
     def read(self,filename, path):
         return pd.read_csv(path+filename)
 
-# used in data_prep
 def generate_hold_out_split(data_bodies, data_merged, dataset_name="fnc", training = 0.8, base_dir="data/splits"): 
     """
     fnc introduces train/holdout split with ids of article bodies
@@ -90,7 +82,6 @@ def generate_hold_out_split(data_bodies, data_merged, dataset_name="fnc", traini
 
     return data_train, data_hold_out
 
-# used in data_prep
 def labels_to_int(dataframe_column, dictionary):
     """
     takes str inputs of labels and assigns corresponding value to them
@@ -318,7 +309,6 @@ output_modes = {
     "multi": "classification"
 }
 
-# define correct measure eval for fn
 def score_submission(preds, labels):
     """  
     careful this function assumes that matrix is in form of 
@@ -424,106 +414,56 @@ def get_f1_overall(labels, conf_matrix):
 
     return statistics.mean(f1_scores), f1_scores
 
-# set up for tracking
 def log_scalar(name, value, step, tb_writer):
     """Log a scalar value to both MLflow and TensorBoard"""
     tb_writer.add_scalar(name, value, step)
-    #mlflow.log_metric(name, value)
 
 def log_weights(model, step, tb_writer):
     """Log weights of all layers of a motdel to TensorBoard"""
     for name, weight in model.named_parameters():     
         tb_writer.add_histogram(name, weight, step)
-        # when freezing layers this does not work anymore
-        # when model is initialized all gradients are None
-        # when calling loss.backward() gradients can be accessed via weight.grad
-        # but if some layers are frozen they don't have a gradient, thus still remain grad
-        # thus cannot be added to histogram
-        #tb_writer.add_histogram(f'{name}.grad', weight.grad, step)
-        #tb_writer.add_histogram(f'{name}.data', weight.data, step)
 
 def freeze(model_type, model):
-    # bert, roberta/distilbert, albert, xlnet
-    # freeze all but last two layers according to model type
     if model_type == "bert":
         for param in model.bert.parameters():
             param.requires_grad = False
-        # first option was implemented so far, doesn't work anymore
-        # second option does not operate as expected
-        #model.bert.pooler.dense.requires_grad_(True)
-        #model.bert.pooler.dense.requires_grad = True
         model.bert.pooler.dense.weight.requires_grad = True
         model.bert.pooler.dense.bias.requires_grad = True
-        for name, param in model.named_parameters():
-            print('name: ', name)
-            print('param.requires_grad: ', param.requires_grad)
-            print('=====')
 
     if model_type == "roberta" or model_type == "distilbert":
         for param in model.roberta.parameters():
             param.requires_grad = False
-        #model.roberta.pooler.dense.requires_grad_(True)
         model.roberta.pooler.dense.weight.requires_grad = True
         model.roberta.pooler.dense.bias.requires_grad = True
-        for name, param in model.named_parameters():
-            print('name: ', name)
-            print('param.requires_grad: ', param.requires_grad)
-            print('=====')
 
     if model_type == "albert":
         for param in model.albert.parameters():
             param.requires_grad = False
-        #model.albert.pooler.requires_grad_(True)
         model.albert.pooler.dense.weight.requires_grad = True
         model.albert.pooler.dense.bias.requires_grad = True
-        for name, param in model.named_parameters():
-            print('name: ', name)
-            print('param.requires_grad: ', param.requires_grad)
-            print('=====')
-
+  
     if model_type == "xlnet":
         for param in model.transformer.parameters():
             param.requires_grad = False
-        for name, param in model.named_parameters():
-            print('name: ', name)
-            print('param.requires_grad: ', param.requires_grad)
-            print('=====')
+
         
 def freeze_embed(model_type, model):
-    # bert, roberta/distilbert, albert, xlnet
-    # freeze embedding layers according to model type
     if model_type == "bert":
         for param in model.bert.embeddings.parameters():
             param.requires_grad = False
-        for name, param in model.named_parameters():
-            print('name: ', name)
-            print('param.requires_grad: ', param.requires_grad)
-            print('=====')
-
+  
     if model_type == "roberta" or model_type == "distilbert":
         for param in model.roberta.embeddings.parameters():
             param.requires_grad = False
-        for name, param in model.named_parameters():
-            print('name: ', name)
-            print('param.requires_grad: ', param.requires_grad)
-            print('=====')
-
+   
     if model_type == "albert":
         for param in model.albert.embeddings.parameters():
             param.requires_grad = False
-        for name, param in model.named_parameters():
-            print('name: ', name)
-            print('param.requires_grad: ', param.requires_grad)
-            print('=====')
-
+    
     if model_type == "xlnet":
         for param in model.transformer.word_embedding.parameters():
             param.requires_grad = False
         model.transformer.mask_emb.requires_grad = False
-        for name, param in model.named_parameters():
-            print('name: ', name)
-            print('param.requires_grad: ', param.requires_grad)
-            print('=====')
 
 def get_batch_size_seq_length(value):
     if value == 1: 
