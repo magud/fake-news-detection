@@ -86,7 +86,7 @@ and learning rate schedule and covers the following grid:
 ## Remarks Scripts
 There are three main scripts:
 * data_prep.py
-* models_exploration.py
+* experiments.py
 * models_grid_search.py
 
 All three scripts are used via the command line.  
@@ -114,13 +114,15 @@ The main pre-processing steps are
 The folder data/splits contains the ids for the training and evaluation (*hold_out*) instances.
 
 ## Details on Initial Experiments script
-Executing *python3 model_exploration_freeze.py*, *python3 model_exploration_freeze_embed.py* and *python3 model_exploration_no_freeze.py* yields the evaluation of the three different freezing techniques. All models are trained for two epochs only and evaluation is done 
+Executing *python3 experiments.py* yields the evaluation of the three different freezing techniques when setting the corresponding *freeze* flag accordingly. All models are trained for two epochs only and evaluation is done 
 with respect to the evaluation dataset.  
 
+Most important flags:  
 The *--model* flag defines whether to use bert, roberta, distilbert, albert or xlnet  
-The *--model_type* flag takes the specific pretrained model from *HuggingFace*, for exampe *bert-base-cased* for *bert*  
+The *--model_type* flag takes the specific pretrained model from *HuggingFace*, for example *bert-base-cased* for *bert*  
 The *--num_epochs* flag is set to a default value of 2 epochs and should not be changed  
 The *--dataset_name* flag can be used to switch between the FNC-1 and FNC-1 ARC dataset  
+The *--freeze* flag sets the freezing technique to be used. A choice between freezing all but the finetuned layers (*freeze*), freezing the embedding layers only (*freeze_embed*) and freezing nothing, id est finetuning all layers (*no_freeze*) is possible. 
 
 ## Details on Grid Search script
 Executing *python3 models_grid_search.py* is the script used that conducts the grid search over 48 hyperparameter combinations.  
