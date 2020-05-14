@@ -419,7 +419,7 @@ def log_scalar(name, value, step, tb_writer):
     tb_writer.add_scalar(name, value, step)
 
 def log_weights(model, step, tb_writer):
-    """Log weights of all layers of a motdel to TensorBoard"""
+    """Log weights of all layers of a model to TensorBoard"""
     for name, weight in model.named_parameters():     
         tb_writer.add_histogram(name, weight, step)
 

@@ -1,7 +1,11 @@
 # based on:
 # https://github.com/huggingface/transformers/blob/master/examples/run_glue.py
 
+from __future__ import absolute_import, division, print_function
+
 import sys
+sys.path.append('/home/ubuntu/.local/lib/python3.6/site-packages')
+sys.path.append('/home/ubuntu/maike')
 import argparse
 import glob
 import logging
@@ -351,10 +355,16 @@ def train_eval(model, tokenizer, config, tb_writer=None):
         log_scalar('fnc_score_rel', fnc_score_rel, nb_eval_steps, tb_writer=tb_writer)
         log_scalar('f1', f1, nb_eval_steps, tb_writer=tb_writer)
 
-model_name = args.model
+""" model_name = args.model
 freezing_technique = args.freeze
 comment = f'{model_name}-{freezing_technique}'
 directory = os.path.join(args.model, 'experiments', args.freeze, 'runs', comment)
+tb_writer = SummaryWriter(directory, comment=comment) """
+
+model_name = args.model
+epoch_num = args.num_epochs
+comment = f' model={model_name} epochs={epoch_num} freeze'
+directory = os.path.join(args.model, 'experiments/freeze/runs', comment)
 tb_writer = SummaryWriter(directory, comment=comment)
 
 train_eval(model, tokenizer, config=search_space, tb_writer=tb_writer)
