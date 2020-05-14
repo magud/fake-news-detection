@@ -99,7 +99,7 @@ task = args.task_name
 labels = ['agree', 'disagree', 'discuss', 'unrelated']
 
 # setting up main directories to save loaded pretrained model and checkpoints
-checkpoint_dir = 'experiments/' + args.freeze + '/outputs'
+checkpoint_dir = 'experiments/' + args.freeze + '/outputs/seed=' + str(args.seed)
 output_dir_model = os.path.join(args.home_path, args.model, 'model_pretrained')
 
 # use same randomly initialized classification layers for all experiments
@@ -355,16 +355,12 @@ def train_eval(model, tokenizer, config, tb_writer=None):
         log_scalar('fnc_score_rel', fnc_score_rel, nb_eval_steps, tb_writer=tb_writer)
         log_scalar('f1', f1, nb_eval_steps, tb_writer=tb_writer)
 
-""" model_name = args.model
-freezing_technique = args.freeze
-comment = f'{model_name}-{freezing_technique}'
-directory = os.path.join(args.model, 'experiments', args.freeze, 'runs', comment)
-tb_writer = SummaryWriter(directory, comment=comment) """
-
 model_name = args.model
-epoch_num = args.num_epochs
-comment = f' model={model_name} epochs={epoch_num} freeze'
-directory = os.path.join(args.model, 'experiments/freeze/runs', comment)
+freezing_technique = args.freeze
+seed = args.seed
+dataset = args.dataset_name
+comment = f'{model_name}-{freezing_technique}-seed={seed}-{dataset}'
+directory = os.path.join(args.model, 'experiments', args.freeze, 'runs', comment)
 tb_writer = SummaryWriter(directory, comment=comment)
 
 train_eval(model, tokenizer, config=search_space, tb_writer=tb_writer)
