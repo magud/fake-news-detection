@@ -77,6 +77,9 @@ if torch.cuda.is_available():
     print("There are %d GPU(s) available." % torch.cuda.device_count())
     print('The following GPU is used: ', torch.cuda.get_device_name(0))
 
+# print out seed information
+print("The following seed is used: seed=" + str(args.seed))
+
 # fix the seed and make cudnn deterministic
 torch.manual_seed(args.seed)
 torch.backends.cudnn.deterministic = True
@@ -99,7 +102,7 @@ task = args.task_name
 labels = ['agree', 'disagree', 'discuss', 'unrelated']
 
 # setting up main directories to save loaded pretrained model and checkpoints
-checkpoint_dir = 'experiments/' + args.freeze + '/outputs/seed=' + str(args.seed)
+checkpoint_dir = 'experiments/' + args.freeze + '/outputs/seed=' + str(args.seed) + '-' + args.dataset_name
 output_dir_model = os.path.join(args.home_path, args.model, 'model_pretrained')
 
 # use same randomly initialized classification layers for all experiments
@@ -287,7 +290,7 @@ def train_eval(model, tokenizer, config, tb_writer=None):
     print("  Batch size: "+str(config['batch_size']))
     print("  ******************************************* \n ")
    
-    eval_loss = 0.0
+    eval_loss, eval_tr_loss = 0.0, 0.0
     nb_eval_steps = 0
     out_label_ids = None
 
@@ -321,9 +324,9 @@ def train_eval(model, tokenizer, config, tb_writer=None):
 
             nb_eval_steps += 1
 
-            # calculate average loss
-            eval_loss = eval_loss / nb_eval_steps
-            log_scalar('loss_eval', eval_loss, nb_eval_steps, tb_writer=tb_writer)
+           # calculate average loss within epoch 
+            eval_tr_loss = eval_loss / nb_eval_steps
+            log_scalar('loss_eval_batch', eval_tr_loss, nb_eval_steps, tb_writer=tb_writer) 
             
             if preds is None:
                 preds = logits.detach().cpu().numpy()
@@ -331,6 +334,8 @@ def train_eval(model, tokenizer, config, tb_writer=None):
             else:
                 preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
                 out_label_ids = np.append(out_label_ids, inputs['labels'].detach().cpu().numpy(), axis=0)
+        
+        log_scalar('loss_eval_epoch', eval_loss / nb_eval_steps, nb_eval_steps, tb_writer=tb_writer) 
                            
         preds = np.argmax(preds, axis=1)
         
