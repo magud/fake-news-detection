@@ -439,8 +439,8 @@ def freeze(model_type, model):
     if model_type == "albert":
         for param in model.albert.parameters():
             param.requires_grad = False
-        model.albert.pooler.dense.weight.requires_grad = True
-        model.albert.pooler.dense.bias.requires_grad = True
+        model.albert.pooler.weight.requires_grad = True
+        model.albert.pooler.bias.requires_grad = True
   
     if model_type == "xlnet":
         for param in model.transformer.parameters():
