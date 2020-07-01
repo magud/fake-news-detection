@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\maike\\anaconda3\\python.exe",
+    "python.pythonPath": "venv\\Scripts\\python.exe",
     "python.linting.pylintArgs": [
         "--errors-only",
         "--generated-members=numpy.*,torch.*,*.data,*.grad"

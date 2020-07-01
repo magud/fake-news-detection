@@ -111,7 +111,7 @@ output_dir_model = os.path.join(args.home_path, args.model, 'model_pretrained')
 
 # use same randomly initialized classification layers for all experiments
 if os.path.exists(output_dir_model):
-    model = model_class.from_pretrained(output_dir_model)
+    model = model_class.from_pretrained(output_dir_model, num_labels=4)
     logger.info("Loading initialized pretrained model from %s", output_dir_model)
 else:
     os.makedirs(output_dir_model)
@@ -146,8 +146,8 @@ for name, param in model.named_parameters():
 # manually change lr to current value
 search_space = {
     "batch_size_seq_length": tune.grid_search([1,2,3,4]), 
-    "lr": tune.grid_search([3e-05]),
-    "lr_type": tune.grid_search(["linear","constant","cosine"])
+    "lr": tune.grid_search([4e-05]),
+    "lr_type": tune.grid_search(["cosine"])
 }
 
 def load_and_cache_examples(task, tokenizer, max_seq_length=512, evaluate=False, train_eval=True):

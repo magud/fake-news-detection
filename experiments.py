@@ -47,7 +47,7 @@ parser.add_argument('--model_type', type=str, default='bert-base-cased', metavar
 parser.add_argument('--num_epochs', type=int, default=2, metavar='N',
                     help='number of epochs to train (default: 2)')
 parser.add_argument('--dataset_name', type=str, default='fnc', metavar='N',
-                    help='Dataset to evaluate, choose fnc or fnc_arc (default: fn)')
+                    help='Dataset to evaluate, choose fnc or fnc_arc (default: fnc)')
 parser.add_argument('--seed', type=int, default=3, metavar='N',
                     help='Seed for reproducibility')
 parser.add_argument('--num_logging_steps', type=int, default=50, metavar='N',
@@ -107,7 +107,7 @@ output_dir_model = os.path.join(args.home_path, args.model, 'model_pretrained')
 
 # use same randomly initialized classification layers for all experiments
 if os.path.exists(output_dir_model):
-    model = model_class.from_pretrained(output_dir_model)
+    model = model_class.from_pretrained(output_dir_model, num_labels=4)
     logger.info("Loading initialized pretrained model from %s", output_dir_model)
 else:
     os.makedirs(output_dir_model)
