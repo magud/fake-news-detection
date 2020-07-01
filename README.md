@@ -114,6 +114,8 @@ The *--num_epochs* flag is set to a default value of 2 epochs and should not be 
 The *--dataset_name* flag can be used to switch between the FNC-1 and FNC-1 ARC dataset  
 The *--freeze* flag sets the freezing technique to be used. A choice between freezing all but the finetuned layers (*freeze*), freezing the embedding layers only (*freeze_embed*) and freezing nothing, id est finetuning all layers (*no_freeze*) is possible. 
 
+Since the experiment script has to be run several times for each model and dataset, an additional bash script is used to facilitate the handling which can be used via *./experiments.sh* in the terminal. 
+
 ## Details on Grid Search script
 Executing *python3 grid_search.py* is the script used that conducts the grid search over 48 hyperparameter combinations.  
 It uses the *tune* package. 
