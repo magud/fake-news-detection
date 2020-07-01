@@ -1,23 +1,18 @@
 # Fake News Detection
-Master's thesis about evaluating BERT, RoBERTa, DistilBERT, ALBERT and XLNet for detecting stances of Fake News.
+Paper about evaluating BERT, RoBERTa, DistilBERT, ALBERT and XLNet for detecting stances of Fake News.
 
 ## Goal and Background
-In this master's thesis, the two datasets FNC-1 and FNC-ARC are used to finetune large pretrained NLP models  
-to classify the stances of article bodies towards their respective headline. 
+In this paper, the two datasets FNC-1 and FNC-ARC are used to finetune large pretrained NLP models  to classify the stances of article bodies towards their respective headline. 
 
 The goal is to systematically analyze the following questions: 
 1. How well do the models perform in general?
 2. How much hyperparameter tuning is necessary?
 3. Which of the models performs best? 
 
-The background of the thesis is the Fake News Challenge which was held in 2017. More details can be found [here](http://www.fakenewschallenge.org/). 
+The background of the paper is the Fake News Challenge which was held in 2017. More details can be found [here](http://www.fakenewschallenge.org/). 
 
 ## Datasets
-In total, two datasets are used to finetune the five models. The first dataset comes from the Fake News Challenge itself,   
-while the second dataset is an extesion that was created by [Hanselowski et al](https://arxiv.org/pdf/1806.05180.pdf).  
-Both datasets consist of article bodies, headlines and class labels. The class label expresses the stance of the article body  
-towards the headline. The article body can either *Agree* (AGR) or *Disagree* (DSG) with the headline, it can *Discuss* (DSC) it  
-or be completely *Unrelated* (UNR). 
+In total, two datasets are used to finetune the five models. The first dataset comes from the Fake News Challenge itself, while the second dataset is an extesion that was created by [Hanselowski et al](https://arxiv.org/pdf/1806.05180.pdf). Both datasets consist of article bodies, headlines and class labels. The class label expresses the stance of the article body towards the headline. The article body can either *Agree* (AGR) or *Disagree* (DSG) with the headline, it can *Discuss* (DSC) it or be completely *Unrelated* (UNR). 
 
 | Dataset | Data Source | Data Type | Instances | AGR | DSG | DSC | UNR | 
 | :------ | :---------- | :-------- | :-------- | :---| :-- | :-- | :-- |
@@ -46,13 +41,9 @@ In total, five models are examined and their implementation of [HuggingFace](htt
 The evaluation is conducted in two steps.  
 
 In the first experimental setup, all models are trained for 2 epochs,  
-with a learning rate of 3e-5, a sequence length of 512 tokens, a batch size of 8 and a linear learning rate schedule.  
-With this fixed setting of hyperparameters three runs were conducted per model and dataset. The first run freezes all  
-layers except for the last two (pooling & classification layer). The second run finetunes all layers. The third run  
-freezes all embeddings layers. 
+with a learning rate of 3e-5, a sequence length of 512 tokens, a batch size of 8 and a linear learning rate schedule.  With this fixed setting of hyperparameters three runs were conducted per model and dataset. The first run freezes all  layers except for the last two (pooling & classification layer). The second run finetunes all layers. The third run  freezes all embeddings layers. 
 
-The second step consists of an extensive grid search over the hyperparameters learning rate, batch size, sequence length  
-and learning rate schedule and covers the following grid: 
+The second step consists of an extensive grid search over the hyperparameters learning rate, batch size, sequence length  and learning rate schedule and covers the following grid: 
 
 <table>
   <tr>
@@ -85,14 +76,13 @@ and learning rate schedule and covers the following grid:
 
 ## Remarks Scripts
 There are three main scripts:
-* data_prep.py
-* experiments.py
-* models_grid_search.py
+* data_prep
+* experiments
+* grid_search
 
 All three scripts are used via the command line.  
 
-**To execute everything, first install the necessary packages via 
-*pip3 install -r requirements.txt***
+**To execute everything, first create a virtual environment and then install the necessary packages via *pip3 install -r requirements.txt*** 
 
 ### Details on Data Pre-Processing script
 Executing *python3 data_prep.py* takes the files
@@ -125,22 +115,15 @@ The *--dataset_name* flag can be used to switch between the FNC-1 and FNC-1 ARC 
 The *--freeze* flag sets the freezing technique to be used. A choice between freezing all but the finetuned layers (*freeze*), freezing the embedding layers only (*freeze_embed*) and freezing nothing, id est finetuning all layers (*no_freeze*) is possible. 
 
 ## Details on Grid Search script
-Executing *python3 models_grid_search.py* is the script used that conducts the grid search over 48 hyperparameter combinations.  
-It uses the *tune* package. In case the code couldn't finish due to for example storage capacity on the virtual machine, the evaluation and testing was redone in a separate script called *models_grid_search_eval_separate.py* and *models_grid_search_test_separate.py* respectively.  
+Executing *python3 grid_search.py* is the script used that conducts the grid search over 48 hyperparameter combinations.  
+It uses the *tune* package. 
 
-**Important**: the current learning rate has to be set manually within the script in the search_space dictionary.  
-The storage capacity of the virtual machine only allowed for saving 12 model combinations at the same time.  
-Thus for each model and dataset, the script *models_grid_search.py* had to be run 4 times for each of the learning rates separately.  
+**Important**: the current learning rate has to be set manually within the script in the search_space dictionary. The storage capacity of the virtual machine only allowed for saving 12 model combinations at the same time. Thus for each model and dataset, the script *grid_search.py* had to be run 4 times for each of the learning rates separately.  
 
 Go to **Details on Initial Experiments script** for details on the flags that can be set. 
 
 ## Additional Remarks
-The difference between the experiments scripts and model_grid_search is that 
+The difference between the experiments and the grid search scripts is that 
 the latter relies on the use of tune to speed up training and to perform grid search.    
 
-In some cases, the model_grid_search didn't end for one run, in that case, the evaluation and testing step  
-were performed separately in addition. Check **Details on Grid Search script** for more details.  
-
-The folders bert/, roberta/, distilbert/, albert/ and xlnet/ contain the used preloaded weights for all experiments and the grid search.  
-
-All output files can be found under the folder results/  
+In some cases, the grid_search didn't end for one run, in that case, the evaluation and testing step  were performed separately in addition. 
